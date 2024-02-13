@@ -11,18 +11,23 @@ graph['g'] = []
 graph['h'] = []
 graph['i'] = [];
 
-const breadthFirstSearch = (rootNode) => {
+const breadthFirstSearch = (rootNode, element) => {
 
     let queue = [];
-    queue.push(rootNode);
-
+    queue.push(...graph[rootNode]);
     while (queue.length) {
         const firstElement = queue.shift();
-        console.log(firstElement);
-        if (graph[firstElement].length) {
+        console.log(firstElement)
+        if (firstElement === element) {
+            return true;
+        } else {
             queue = [...queue, ...graph[firstElement]]
         }
     }
+    return false;
+
 }
 
-breadthFirstSearch('sanchit')
+//is sanchit connected to i
+const result = breadthFirstSearch('sanchit', 'i')
+console.log(result);
